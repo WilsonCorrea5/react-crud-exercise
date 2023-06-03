@@ -1,10 +1,23 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { GlobalContext } from "../context/GlobalContext";
+import { Modal } from "./Modal";
 
 export const TaskList = () => {
   const { state, deleteTask, toggleTask } = useContext(GlobalContext);
+  const [showModal, setShowModal] = useState(false);
+  const [taskId, setTaskId] = useState("");
+
+  const newDeleteTask = () => {
+    deleteTask(taskId);
+    setShowModal(false);
+    setTaskId("");
+  };
+  const handleClose = () => {
+    setShowModal(false);
+    setTaskId("");
+  };
 
   return (
     <div className="flex justify-center">
@@ -33,7 +46,10 @@ export const TaskList = () => {
               </Link>
 
               <button
-                onClick={() => deleteTask(task.id)}
+                onClick={() => {
+                  setTaskId(task.id);
+                  setShowModal(true);
+                }}
                 className="bg-red-600 hover:bg-red-500 py-1 px-2 m-2 rounded"
               >
                 Delete
@@ -42,6 +58,15 @@ export const TaskList = () => {
           </div>
         ))}
       </div>
+      {taskId && (
+        <Modal
+          onClose={handleClose}
+          showModal={showModal}
+          setShowModal={setShowModal}
+          deleteTask={newDeleteTask}
+          task={taskId}
+        ></Modal>
+      )}
     </div>
   );
 };
