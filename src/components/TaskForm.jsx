@@ -22,6 +22,7 @@ export const TaskForm = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (task.title.trim().length <= 0) return;
     if (task.id) {
       updateTask(task);
     } else {

@@ -6,18 +6,12 @@ export const GlobalProvider = ({ children }) => {
   const tasks = [
     {
       id: 1,
-      title: "title 1",
-      description: "desc 1",
-      done: false,
-    },
-    {
-      id: 2,
-      title: "title 2",
-      description: "desc 2",
+      title: "Example Task",
+      description:
+        "Here you Can Add, Delete, Update and also mark and unmark a task as done.",
       done: false,
     },
   ];
-
   const [state, dispatch] = useReducer(globalReducer, tasks);
 
   const addTask = (task) => {

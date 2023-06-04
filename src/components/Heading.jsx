@@ -5,7 +5,9 @@ export const Heading = () => {
     <div>
       <div className="flex item-center mb-10">
         <Link to={"/"}>
-          <h5 className="text-gray-100 font-bold text-2xl">Task Crud</h5>
+          <h5 className="text-gray-700 outline-blue-500 hover:shadow-2xl rounded px-1 font-bold text-2xl">
+            TaskCrud
+          </h5>
         </Link>
         <div className="flex-grow text-right px-4 py-2 m-2">
           <Link to={"/add"}>
